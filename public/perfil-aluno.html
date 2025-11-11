@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil - Sistema de Fila</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo SESI SENAI">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="dashboard-aluno.html">Home</a></li>
+        <li><a href="historico-individual.html">Histórico Individual</a></li>
+        <li><a href="perfil-aluno.html" class="active">Meu Perfil</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="btn-header" id="btnLogout">Sair</a>
+  </header>
+
+  <!-- Botão Voltar -->
+  <a href="dashboard-aluno.html" class="btn-voltar"><img src="img/seta-esquerda.png" alt=""></a>
+
+  <!-- Conteúdo Principal -->
+  <main class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Meu Perfil</h1>
+      <div class="user-info">
+        <span id="nomePerfil">Carregando...</span>
+      </div>
+    </div>
+
+    <div class="dashboard-content admin-grid">
+      <!-- Informações Pessoais -->
+      <div class="dashboard-card">
+        <h2>Informações Pessoais</h2>
+        <form id="formPerfil">
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Nome Completo</label>
+            <div class="input-group">
+              <input type="text" id="perfilNome" value="" readonly>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">RM</label>
+            <div class="input-group">
+              <input type="text" id="perfilRm" value="" readonly>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">E-mail</label>
+            <div class="input-group">
+              <input type="email" id="perfilEmail" value="" readonly>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Tipo de Usuário</label>
+            <div class="input-group">
+              <input type="text" id="perfilTipo" value="Aluno" readonly>
+            </div>
+          </div>
+
+          <button type="button" id="btnEditarPerfil" class="btn" style="margin-top: 10px;">Editar Informações</button>
+          <button type="submit" id="btnSalvarPerfil" class="btn" style="margin-top: 10px; display: none;">Salvar Alterações</button>
+          <button type="button" id="btnCancelarEdicao" class="btn btn-secundario" style="margin-top: 10px; display: none;">Cancelar</button>
+        </form>
+      </div>
+
+      <!-- Alterar Senha -->
+      <div class="dashboard-card">
+        <h2>Alterar Senha</h2>
+        <form id="formSenha">
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Senha Atual</label>
+            <div class="input-group">
+              <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Nova Senha</label>
+            <div class="input-group">
+              <input type="password" id="novaSenha" placeholder="Digite a nova senha">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Confirmar Nova Senha</label>
+            <div class="input-group">
+              <input type="password" id="confirmarNovaSenha" placeholder="Confirme a nova senha">
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Alterar Senha</button>
+        </form>
+      </div>
+
+      <!-- Estatísticas Pessoais -->
+      <div class="dashboard-card">
+        <h2>Minhas Estatísticas</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Saídas no Mês</span>
+            <span class="stat-value" id="estatisticaSaidasMes">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Tempo Médio</span>
+            <span class="stat-value" id="estatisticaTempoMedio">0 min</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Maior Tempo</span>
+            <span class="stat-value" id="estatisticaMaiorTempo">0 min</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Posição na Escola</span>
+            <span class="stat-value" id="estatisticaPosicao">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferências -->
+      <div class="dashboard-card">
+        <h2>Preferências</h2>
+        <div style="margin-bottom: 15px;">
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+            <input type="checkbox" id="notificacoesEmail">
+            Receber notificações por e-mail
+          </label>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+            <input type="checkbox" id="lembreteTempo" checked>
+            Lembrete de tempo no banheiro
+          </label>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Tema da Interface</label>
+          <select id="temaInterface" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <option value="claro">Claro</option>
+            <option value="escuro">Escuro</option>
+            <option value="auto">Automático</option>
+          </select>
+        </div>
+        <button type="button" id="btnSalvarPreferencias" class="btn">Salvar Preferências</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="perfil-aluno.js"></script>
+</body>
+</html>

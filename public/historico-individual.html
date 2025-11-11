@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico Individual - Sistema de Fila</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo SESI SENAI">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="dashboard-aluno.html">Home</a></li>
+        <li><a href="historico-individual.html">Histórico Individual</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="btn-header" id="btnLogout">Sair</a>
+  </header>
+
+  <!-- Botão Voltar -->
+  <a href="dashboard-aluno.html" class="btn-voltar"><img src="img/seta-esquerda.png" alt=""></a>
+
+  <!-- Conteúdo Principal -->
+  <main class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Histórico Individual</h1>
+      <div class="user-info">
+        <span id="nomeAlunoHistorico">Carregando...</span>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="dashboard-card">
+        <h2>Registro de Saídas</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Hora Saída</th>
+                <th>Hora Retorno</th>
+                <th>Tempo Fora</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" class="text-center">Nenhum registro encontrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const alunoStorage = localStorage.getItem('alunoLogado');
+        if (!alunoStorage) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        const aluno = JSON.parse(alunoStorage);
+        document.getElementById('nomeAlunoHistorico').textContent = aluno.nome;
+        
+        document.getElementById('btnLogout').addEventListener('click', function() {
+            localStorage.removeItem('alunoLogado');
+            window.location.href = 'index.html';
+        });
+    });
+  </script>
+</body>
+</html>

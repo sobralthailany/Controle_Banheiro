@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Fila - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo SESI SENAI">
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="dashboard-aluno.html">Home</a></li>
+        <li><a href="dashboard-admin.html">Dashboard</a></li>
+        <li><a href="historico-individual.html">Histórico Individual</a></li>
+      </ul>
+    </nav>
+
+    <a href="cadastro.html" class="btn-header">Cadastrar</a>
+  </header>
+
+  <!-- Tela de Login -->
+  <main>
+    <div class="login-card">
+      <div class="logoEscola">
+        <img class="imgLogin" src="img/login.png" alt="">
+      </div>
+      
+      <h2 class="titulo-login">LOGIN</h2>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <input type="text" id="rm" placeholder="RM (Registro Matrícula)" required>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="senha" placeholder="Senha" required>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn">ENTRAR</button>
+          <a href="cadastro.html" class="btn">CADASTRAR</a>
+        </div>
+
+        <div class="tipo-login">
+          <label>
+            <input type="radio" name="tipoUsuario" value="aluno" checked>
+            Aluno
+          </label>
+          <label>
+            <input type="radio" name="tipoUsuario" value="admin">
+            Administrador
+          </label>
+        </div>
+
+        <a href="#" class="forgot">
+          <span class="square"></span>
+          ESQUECI MINHA SENHA
+        </a>
+      </form>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

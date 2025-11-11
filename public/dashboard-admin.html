@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrativo - Sistema de Fila</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo SESI SENAI">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="dashboard-admin.html" class="active">Dashboard</a></li>
+        <li><a href="gerenciar-usuarios.html">Gerenciar Usuários</a></li>
+        <li><a href="relatorios.html">Relatórios</a></li>
+        <li><a href="configuracoes.html">Configurações</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="btn-header" id="btnLogout">Sair</a>
+  </header>
+
+  <!-- Botão Voltar -->
+  <a href="index.html" class="btn-voltar"><img src="img/seta-esquerda.png" alt=""></a>
+
+  <!-- Conteúdo Principal -->
+  <main class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Dashboard Administrativo</h1>
+      <div class="user-info">
+        <span id="nomeAdmin">Administrador</span>
+      </div>
+    </div>
+
+    <!-- Controles Rápidos -->
+    <div class="admin-controls" style="margin-bottom: 20px;">
+      <button id="btnLimparFila" class="btn btn-alerta">Limpar Fila</button>
+      <button id="btnResetarSistema" class="btn btn-perigo">Resetar Sistema</button>
+      <button id="btnNotificarProximo" class="btn">Notificar Próximo</button>
+    </div>
+
+    <div class="dashboard-content admin-grid">
+      <!-- Status Geral -->
+      <div class="dashboard-card">
+        <h2>Status Geral do Sistema</h2>
+        <div class="status-grid">
+          <div class="stat-item">
+            <span class="stat-label">Status Banheiro</span>
+            <span class="stat-value" id="statusBanheiroGeral">Carregando...</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Alunos na Fila</span>
+            <span class="stat-value" id="alunosFila">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Aluno Atual</span>
+            <span class="stat-value" id="alunoAtual">Nenhum</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Tempo Atual</span>
+            <span class="stat-value" id="tempoAtual">00:00</span>
+          </div>
+        </div>
+        <div id="infoDetalhadaBanheiro" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; font-size: 0.9rem;"></div>
+      </div>
+
+      <!-- Alunos Fora da Sala -->
+      <div class="dashboard-card">
+        <h2>Alunos Fora da Sala <span id="contadorForaSala" style="background: #467599; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">0</span></h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Aluno</th>
+                <th>Tempo Fora</th>
+                <th>Horário Saída</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="alunosForaSala">
+              <tr>
+                <td colspan="4" class="text-center">Nenhum aluno fora da sala</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Fila de Espera Ativa -->
+      <div class="dashboard-card">
+        <h2>Fila de Espera <span id="contadorFilaAdmin" style="background: #467599; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">0</span></h2>
+        <div class="fila-container">
+          <div id="listaFilaAdmin" class="fila-lista">
+            <p class="fila-vazia">Nenhum aluno na fila</p>
+          </div>
+        </div>
+        <div style="margin-top: 15px;">
+          <strong>Próximos na fila:</strong>
+          <div id="proximosFila" style="font-size: 0.9rem; margin-top: 5px;"></div>
+        </div>
+      </div>
+
+      <!-- Estatísticas do Dia -->
+      <div class="dashboard-card">
+        <h2>Estatísticas do Dia</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Total de Saídas</span>
+            <span class="stat-value" id="saidasHoje">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Tempo Médio</span>
+            <span class="stat-value" id="tempoMedio">0 min</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Aluno que Mais Saiu</span>
+            <span class="stat-value" id="alunoMaisSaiu">-</span>
+            <span class="stat-quantidade" id="quantidadeMaisSaiu"></span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Maior Tempo</span>
+            <span class="stat-value" id="maiorTempo">0 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alertas e Notificações -->
+      <div class="dashboard-card">
+        <h2>Alertas do Sistema</h2>
+        <div id="alertasSistema" style="max-height: 200px; overflow-y: auto;">
+          <div class="alerta-item" style="padding: 10px; margin: 5px 0; background: #fff3e0; border-radius: 5px; border-left: 4px solid #ff9800;">
+            <strong>⚠️ Sistema Iniciado</strong>
+            <p style="margin: 5px 0 0 0; font-size: 0.8rem;">Sistema de controle de fila ativo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles Avançados -->
+      <div class="dashboard-card">
+        <h2>Controles do Sistema</h2>
+        <div class="btn-group-vertical">
+          <button id="btnPausarSistema" class="btn btn-alerta">Pausar Sistema</button>
+          <button id="btnForcarRetorno" class="btn btn-perigo">Forçar Retorno</button>
+          <button id="btnLimparHistorico" class="btn">Limpar Histórico do Dia</button>
+        </div>
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #666;">
+          <strong>Status do Sistema:</strong> <span id="statusSistema" style="color: #2e7d32;">● Ativo</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="dashboard-admin.js"></script>
+</body>
+</html>
